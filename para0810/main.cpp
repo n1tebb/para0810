@@ -27,7 +27,7 @@ int delenie(int chislo1, int chislo2)
 	}
 	else
 	{
-		std::cout << "Деление на 0!!!";
+		std::cout << "Деление на 0!!!\n";
 		return 0;
 	}
 }
@@ -51,20 +51,21 @@ int main()
 	std::cout << "Введите второе число: \n";
 	std::cin >> num2;
 
-	switch (operation)
+	if (operation == '+') 
 	{
-	case '+':
 		res = plus(num1, num2);
-		break;
-	case '-':
+	}
+	else if (operation == '-')
+	{
 		res = minus(num1, num2);
-		break;
-	case '*':
+	}
+	else if (operation == '*')
+	{
 		res = mnojitel(num1, num2);
-		break;
-	case '/':
+	}
+	else if (operation == '/')
+	{ 
 		res = delenie(num1, num2);
-		break;
 	}
 
 	std::cout << "Результат: " << res << "\n";
