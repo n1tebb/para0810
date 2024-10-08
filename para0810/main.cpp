@@ -19,7 +19,7 @@ int mnojitel(int chislo1, int chislo2)
 	return chislo1 * chislo2;
 }
 
-int delenie(int chislo1, int chislo2)
+double delenie(double chislo1, double chislo2)
 {
 	if (chislo2 != 0)
 	{
