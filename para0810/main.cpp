@@ -3,33 +3,52 @@
 #include <cstdlib>
 
 
+const int size = 10; 
 
-int plus(int chislo1, int chislo2)
+void fillmass(int arr[], int size)
 {
-	return chislo1 + chislo2;
-}
-
-int minus(int chislo1, int chislo2)
-{
-	return chislo1 - chislo2;
-}
-
-int mnojitel(int chislo1, int chislo2)
-{
-	return chislo1 * chislo2;
-}
-
-double delenie(double chislo1, double chislo2)
-{
-	if (chislo2 != 0)
+	for (int i = 0; i < size; i++)
 	{
-		return chislo1 / chislo2;
+		arr[i] = rand() % 100;
 	}
-	else
+}
+
+void findMinMax(const int arr[], int size, int &minValue, int &maxValue, int &minIndex, int &maxIndex)
+{
+	minValue = arr[0];
+	maxValue = arr[0];
+	minIndex = 0;
+	maxIndex = 0;
+
+	for (int i = 0; i < size; i++)
 	{
-		std::cout << "Деление на 0!!!\n";
-		return 0;
+		if (arr[i] < minValue)
+		{
+			minValue = arr[i];
+			minIndex = i;
+		}
+		if (arr[i] > maxValue)
+		{
+			maxValue = arr[i];
+			maxIndex = i;
+		}
 	}
+}
+
+void printarr(const int arr[], int size)
+{
+	std::cout << "Массив: ";
+	for (int i = 0; i < size; i++)
+	{
+		std::cout << arr[i] << " ";
+	}
+	std::cout << "\n";
+}
+
+void printresult(int minValue, int maxValue, int minIndex, int maxIndex)
+{
+	std::cout << "Минимальный элемент: " << minValue << " (значение и номер: " << minIndex << ")\n";
+	std::cout << "Максимальный элемент: " << maxValue << " (Значение и номер: " << maxIndex << ")\n";
 }
 
 int main() 
@@ -38,37 +57,13 @@ int main()
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
 
-	int num1, num2;
-	char operation;
-	int res;
+	int arr[size];
+	int minValue, maxValue, minIndex, maxIndex;
 
-	std::cout << "Введите первое число: \n";
-	std::cin >> num1;
-
-	std::cout << "Введите оператор (+ - * /): \n";
-	std::cin >> operation;
-
-	std::cout << "Введите второе число: \n";
-	std::cin >> num2;
-
-	if (operation == '+') 
-	{
-		res = plus(num1, num2);
-	}
-	else if (operation == '-')
-	{
-		res = minus(num1, num2);
-	}
-	else if (operation == '*')
-	{
-		res = mnojitel(num1, num2);
-	}
-	else if (operation == '/')
-	{ 
-		res = delenie(num1, num2);
-	}
-
-	std::cout << "Результат: " << res << "\n";
+	fillmass(arr, size);
+	findMinMax(arr, size, minValue, maxValue, minIndex, maxIndex);
+	printarr(arr, size);
+	printresult(minValue, maxValue, minIndex, maxIndex);
 
 	return 0;
 }
